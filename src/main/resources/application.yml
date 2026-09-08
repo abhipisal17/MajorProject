@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/p2p_escrow}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+  jpa:
+    hibernate.ddl-auto: validate
+    open-in-view: false
+  data.redis.host: ${REDIS_HOST:localhost}
+  sql.init.mode: always
+server.error.include-message: never
+app.jwt.secret: ${JWT_SECRET:change-this-to-a-minimum-32-byte-production-secret-key}
+app.jwt.expiry-hours: 12

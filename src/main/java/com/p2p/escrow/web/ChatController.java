@@ -1,0 +1,3 @@
+package com.p2p.escrow.web;
+import org.springframework.messaging.handler.annotation.MessageMapping; import org.springframework.messaging.simp.SimpMessagingTemplate; import org.springframework.stereotype.Controller; import java.time.Instant; import java.util.UUID;
+@Controller public class ChatController {private final SimpMessagingTemplate broker;public ChatController(SimpMessagingTemplate b){broker=b;}@MessageMapping("chat") public void send(ChatMessage m){if(m.escrowId()!=null&&m.body()!=null&&!m.body().isBlank())broker.convertAndSend("/topic/escrow/"+m.escrowId(),new ChatMessage(m.escrowId(),m.body().trim(),m.sender(),Instant.now()));}public record ChatMessage(UUID escrowId,String body,String sender,Instant at){}}

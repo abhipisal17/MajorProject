@@ -1,0 +1,3 @@
+package com.p2p.escrow.domain;
+import jakarta.persistence.*; import java.time.Instant; import java.util.UUID;
+@Entity @Table(name="users") public class AppUser { @Id public UUID id=UUID.randomUUID(); @Column(unique=true,nullable=false) public String email; @Column(name="password_hash",nullable=false) public String passwordHash; @Enumerated(EnumType.STRING) public Enums.Role role=Enums.Role.USER; @Enumerated(EnumType.STRING) @Column(name="kyc_status") public Enums.KycStatus kycStatus=Enums.KycStatus.PENDING; @Column(name="trust_score") public int trustScore; public boolean suspended; @Column(name="created_at") public Instant createdAt=Instant.now(); }

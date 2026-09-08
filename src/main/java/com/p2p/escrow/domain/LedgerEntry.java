@@ -1,0 +1,3 @@
+package com.p2p.escrow.domain;
+import jakarta.persistence.*; import java.math.BigDecimal; import java.time.Instant; import java.util.UUID;
+@Entity @Table(name="ledger_entries") public class LedgerEntry { @Id public UUID id=UUID.randomUUID(); @Column(name="wallet_id") public UUID walletId; @Column(name="escrow_id") public UUID escrowId; @Column(name="entry_type") public String entryType; @Column(name="available_delta") public BigDecimal availableDelta; @Column(name="locked_delta") public BigDecimal lockedDelta; @Column(name="idempotency_key",unique=true) public String idempotencyKey; @Column(name="created_at") public Instant createdAt=Instant.now(); }

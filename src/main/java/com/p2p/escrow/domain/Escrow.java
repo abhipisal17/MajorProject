@@ -1,0 +1,3 @@
+package com.p2p.escrow.domain;
+import jakarta.persistence.*; import java.math.BigDecimal; import java.time.Instant; import java.util.UUID;
+@Entity @Table(name="escrows") public class Escrow { @Id public UUID id=UUID.randomUUID(); @Column(name="order_id",unique=true) public UUID orderId; @Column(name="seller_id") public UUID sellerId; @Column(name="buyer_id") public UUID buyerId; public String asset; public BigDecimal amount; @Enumerated(EnumType.STRING) public Enums.EscrowStatus status=Enums.EscrowStatus.LOCKED; @Column(name="buyer_paid_at") public Instant buyerPaidAt; @Column(name="seller_received_at") public Instant sellerReceivedAt; @Column(name="resolved_by") public UUID resolvedBy; @Column(name="created_at") public Instant createdAt=Instant.now(); }
